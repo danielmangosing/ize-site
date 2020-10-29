@@ -34,6 +34,9 @@ class JoyStick {
         document.addEventListener("keydown", function (evt) {
           joystick.tap(evt);
         });
+        document.addEventListener("keyup", function (evt) {
+          joystick.tap(evt);
+        });
       }
     }
 
@@ -62,7 +65,7 @@ class JoyStick {
         joystick.up(evt);
       };
     } else {
-      document.onkeydown = function (evt) {
+      if (evt.type === "keydown") {
         switch (evt.keyCode) {
           case 87:
             // w
@@ -82,8 +85,7 @@ class JoyStick {
             break;
         }
         joystick.move(evt);
-      };
-      document.onkeyup = function (evt) {
+      } else if (evt.type === "keyup") {
         switch (evt.keyCode) {
           case 87:
             // w
@@ -103,7 +105,7 @@ class JoyStick {
             break;
         }
         joystick.move(evt);
-      };
+      }
     }
   }
 
