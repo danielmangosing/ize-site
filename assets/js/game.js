@@ -28,6 +28,7 @@ class Game {
     this.debug = false;
     this.debugPhysics = false;
     this.cameraFade = 0.05;
+    this.loaded = false;
     this.mute = false;
     this.highlighted;
     this.outlinePass;
@@ -167,31 +168,32 @@ class Game {
     // model + load manager
     const manager = new THREE.LoadingManager();
     manager.onStart = (url, itemsLoaded, itemsTotal) => {
-      console.log(
-        "Loading file: " +
-          url +
-          ".\nLoaded " +
-          itemsLoaded +
-          " of " +
-          itemsTotal +
-          " files."
-      );
+      // console.log(
+      //   "Loading file: " +
+      //     url +
+      //     ".\nLoaded " +
+      //     itemsLoaded +
+      //     " of " +
+      //     itemsTotal +
+      //     " files."
+      // );
     };
     manager.onProgress = (url, itemsLoaded, itemsTotal) => {
-      console.log(
-        "Loading file: " +
-          url +
-          ".\nLoaded " +
-          itemsLoaded +
-          " of " +
-          itemsTotal +
-          " files."
-      );
+      // console.log(
+      //   "Loading file: " +
+      //     url +
+      //     ".\nLoaded " +
+      //     itemsLoaded +
+      //     " of " +
+      //     itemsTotal +
+      //     " files."
+      // );
       let pct = itemsLoaded / 15.0;
       $(".bar").css("width", `${pct * 100}%`);
     };
     manager.onLoad = () => {
       console.log("Loading complete!");
+      game.loaded = true;
     };
     manager.onError = (url) => {
       console.log("There was an error loading " + url);
@@ -269,7 +271,7 @@ class Game {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-    this.renderer.shadowMapDebug = true;
+    this.renderer.shadowMapDebug = false;
     this.container.appendChild(this.renderer.domElement);
 
     // postprocessing
@@ -277,6 +279,7 @@ class Game {
     let renderPass = new THREE.RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
 
+    //outline
     this.outlinePass = new THREE.OutlinePass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
       this.scene,
@@ -285,13 +288,15 @@ class Game {
     this.outlinePass.renderToScreen = true;
     this.composer.addPass(this.outlinePass);
 
-    this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
-    this.effectFXAA.uniforms["resolution"].value.set(
-      1 / window.innerWidth,
-      1 / window.innerHeight
-    );
-    this.effectFXAA.renderToScreen = true;
-    this.composer.addPass(this.effectFXAA);
+
+    //fxaa
+    // this.effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
+    // this.effectFXAA.uniforms["resolution"].value.set(
+    //   1 / window.innerWidth,
+    //   1 / window.innerHeight
+    // );
+    // this.effectFXAA.renderToScreen = true;
+    // this.composer.addPass(this.effectFXAA);
 
 
     // // LUT
@@ -307,12 +312,13 @@ class Game {
   //  gammaPass.renderToScreen = true;
 //    this.composer.addPass(gammaPass);
 
-    let bloomPass = new THREE.UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-     bloomPass.threshold = 0.1;
-		bloomPass.strength = 0.225;
-		bloomPass.radius = 1;
-    bloomPass.renderToScreen = true;
-   this.composer.addPass(bloomPass);
+//BLOOM
+   //  let bloomPass = new THREE.UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+   //   bloomPass.threshold = 0.1;
+		// bloomPass.strength = 0.225;
+		// bloomPass.radius = 1;
+   //  bloomPass.renderToScreen = true;
+   // this.composer.addPass(bloomPass);
 
 
     // let horizontalBlur = new THREE.ShaderPass(THREE.HorizontalBlurShader);
@@ -340,13 +346,29 @@ class Game {
     }
 
     // init overlay
-    window.addEventListener("click", (e) => {
-      $("#init-overlay").addClass("fade-in");
-      let video = document.getElementById("video");
-      video.play();
-      setInterval(() => {
-        $("#init-overlay").hide();
-      }, 2000);
+
+    document.getElementById('init-overlay').addEventListener("click", (e) => {
+      if(this.loaded) {
+        $("#init-overlay").addClass("fade-in");
+        let video = document.getElementById("video");
+        video.play();
+        setInterval(() => {
+          $("#init-overlay").hide();
+        }, 2000);
+      }
+
+    });
+
+    document.getElementById('init-overlay').addEventListener("touchstart", (e) => {
+      if(this.loaded) {
+        $("#init-overlay").addClass("fade-in");
+        let video = document.getElementById("video");
+        video.play();
+        setInterval(() => {
+          $("#init-overlay").hide();
+        }, 2000);
+      }
+
     });
 
     // menu

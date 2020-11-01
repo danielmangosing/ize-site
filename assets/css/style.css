@@ -123,7 +123,7 @@ body {
   display: block;
   z-index: 2;
   position: absolute;
-  height: 50%
+  height: 50%;
   left: 50%;
   margin-left: -45vw;
   top: 60%;
@@ -164,10 +164,11 @@ body {
   position: absolute;
   background-color: #000;
   padding: 1vw;
-  height: 8.5vh;
-  margin-top: -15vh;
-  width: 350px;
-  margin-left: -10vw;
+  height: 80px;
+  margin-top: -40px;
+  width: 300px;
+  margin-left: -150px;
+  top: 50%;
 }
 #spotify-iframe {
   margin-left: 15%;
@@ -193,5 +194,43 @@ body {
   top: 25%;
   margin-left: auto;
   text-align: center;
+}
 
+#section-video iframe {
+  width: 560px;
+  height: 315px;
+}
+
+#joystick {
+  z-index: 90;
+}
+
+
+@media only screen and (max-width: 600px) {
+  #section-video {
+    top: 40%;
+    margin-top: -200px;
+  }
+  #section-video iframe, .videoPageIframe iframe {
+    width: 300px;
+    height: 168.75px;
+  }
+  #section-tour img {
+    width: 80%;
+    height: auto;
+  }
+  #section-contact {
+    width: 300px;
+    margin-left: -150px;
+    height: 80px;
+    margin-top: -40px;
+    top: 50%;
+  }
+  .menu-item {
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+  .bottomtext{
+    display: none;
+  }
 }
