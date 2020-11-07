@@ -477,6 +477,8 @@ class Game {
 
             } else if (child.name.includes("speakers")) {
               game.speakers = child;
+            } else if (child.name.includes("tanktop")) {
+              game.tanktop = child;
             }
           }
         });
@@ -640,10 +642,10 @@ class Game {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.composer.setSize(window.innerWidth, window.innerHeight);
 
-    this.effectFXAA.uniforms["resolution"].value.set(
-      1 / window.innerWidth,
-      1 / window.innerHeight
-    );
+    // this.effectFXAA.uniforms["resolution"].value.set(
+    //   1 / window.innerWidth,
+    //   1 / window.innerHeight
+    // );
   }
 
   set action(name) {
@@ -862,6 +864,24 @@ class Game {
       }
     }
 
+    if (this.tanktop !== undefined) {
+      const dist = this.tanktop.position.distanceTo(
+        game.player.object.position
+      );
+      if (dist < 50) {
+        // near poster
+        $("#menu-merch, #bottom-title-merch, #section-merch").addClass("highlighted");
+        this.highlighted = "merch";
+        this.outlinePass.selectedObjects = [this.tanktop];
+      } else {
+        $("#menu-merch, #bottom-title-merch, #section-merch").removeClass("highlighted");
+        if (this.highlighted === "merch") {
+          this.outlinePass.selectedObjects = [];
+          this.highlighted = "";
+        }
+      }
+    }
+
     this.composer.render();
     // this.renderer.render(this.scene, this.camera);
 
@@ -876,30 +896,30 @@ class Game {
 
 }
 
-function lutStringToTexture ( lutString, lutSize ) {
-  var totalNumberOfComponents = lutSize * lutSize * lutSize * 4;
-  var floatsIdx = 0;
-  var floatArray = lutString
-          .split( '\n' )
-          .map( function ( line ) {
-              return line.split( ' ' );
-          })
-          .filter( function ( components ) {
-              return components.length === 3;
-          })
-          .reduce( function ( floats, components, index ) {
-              components.forEach( function ( v, idx ) {
-                  floats[ floatsIdx++ ] = v;
-                  if ( idx===2 ) {
-                      floats[ floatsIdx++ ] = 1.0;
-                  }
-              });
-              return floats;
-          }, new Float32Array( totalNumberOfComponents ) );
-
-  var texture = new THREE.DataTexture( floatArray, lutSize * lutSize, lutSize );
-  texture.type = THREE.FloatType;
-  texture.format = THREE.RGBAFormat;
-
-  return texture;
-}
+// function lutStringToTexture ( lutString, lutSize ) {
+//   var totalNumberOfComponents = lutSize * lutSize * lutSize * 4;
+//   var floatsIdx = 0;
+//   var floatArray = lutString
+//           .split( '\n' )
+//           .map( function ( line ) {
+//               return line.split( ' ' );
+//           })
+//           .filter( function ( components ) {
+//               return components.length === 3;
+//           })
+//           .reduce( function ( floats, components, index ) {
+//               components.forEach( function ( v, idx ) {
+//                   floats[ floatsIdx++ ] = v;
+//                   if ( idx===2 ) {
+//                       floats[ floatsIdx++ ] = 1.0;
+//                   }
+//               });
+//               return floats;
+//           }, new Float32Array( totalNumberOfComponents ) );
+//
+//   var texture = new THREE.DataTexture( floatArray, lutSize * lutSize, lutSize );
+//   texture.type = THREE.FloatType;
+//   texture.format = THREE.RGBAFormat;
+//
+//   return texture;
+// }

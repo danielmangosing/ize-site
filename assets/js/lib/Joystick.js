@@ -6,7 +6,6 @@ let rightKey = false;
 class JoyStick {
   constructor(options) {
     const circle = document.createElement("div");
-    circle.id="joystick";
     circle.style.cssText =
       "position:absolute; bottom:35px; width:80px; height:80px; background:rgba(126, 126, 126, 0.5); border:#fff solid medium; border-radius:50%; left:50%; transform:translateX(-50%);";
     const thumb = document.createElement("div");
@@ -33,6 +32,9 @@ class JoyStick {
         });
       } else {
         document.addEventListener("keydown", function (evt) {
+          joystick.tap(evt);
+        });
+        document.addEventListener("keyup", function (evt) {
           joystick.tap(evt);
         });
       }
@@ -63,7 +65,7 @@ class JoyStick {
         joystick.up(evt);
       };
     } else {
-      document.onkeydown = function (evt) {
+      if (evt.type === "keydown") {
         switch (evt.keyCode) {
           case 87:
             // w
@@ -83,8 +85,7 @@ class JoyStick {
             break;
         }
         joystick.move(evt);
-      };
-      document.onkeyup = function (evt) {
+      } else if (evt.type === "keyup") {
         switch (evt.keyCode) {
           case 87:
             // w
@@ -104,7 +105,7 @@ class JoyStick {
             break;
         }
         joystick.move(evt);
-      };
+      }
     }
   }
 
