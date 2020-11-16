@@ -479,6 +479,13 @@ class Game {
               game.speakers = child;
             } else if (child.name.includes("tanktop")) {
               game.tanktop = child;
+              const oldMat = child.material;
+              const tanktopMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                emissive: 0xffffff,
+                skinning: false,
+              });
+              child.material = tanktopMat;
             }
           }
         });
@@ -880,6 +887,7 @@ class Game {
           this.highlighted = "";
         }
       }
+      this.tanktop.rotation.y += 0.05;
     }
 
     this.composer.render();
