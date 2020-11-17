@@ -242,8 +242,10 @@ font-size: 150%;
 }
 
 #section-video iframe {
+  top: 45%;
   width: 560px;
   height: 315px;
+  position: relative;
 }
 
 #joystick {

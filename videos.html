@@ -40,6 +40,20 @@
 
 				cursor: pointer;
 			}
+			/* #id-playlist {
+				margin-left: 250px;
+			} */
+			#subscribe-btn {
+				width: 560px;
+				display: inline-block;
+				 margin-bottom: 0px;
+			}
+
+			@media only screen and (max-width: 600px) {
+				#subscribe-btn {
+					margin-bottom: 30px;
+				}
+			}
 		</style>
 
 
@@ -56,15 +70,12 @@
 
 	<script src="https://apis.google.com/js/platform.js"></script>
 
-<div class="g-ytsubscribe" data-channelid="UCLtYnWyUyRjqe5n87tk1WYg" data-layout="full" data-count="default"></div>
+<div id="subscribe-btn">
+	<div width="560" height="315" class="g-ytsubscribe" data-channelid="UCLtYnWyUyRjqe5n87tk1WYg" data-layout="full" data-count="default"></div>
+</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=UULtYnWyUyRjqe5n87tk1WYg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 	<br>
 	<iframe
 		width="560"
@@ -74,8 +85,6 @@
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 		allowfullscreen
 	></iframe>
-	<br>
-	<br>
 	<iframe
 		width="560"
 		height="315"
