@@ -41,39 +41,41 @@
 				cursor: pointer;
 			}
 		</style>
+	
+		<!-- econ merch product header embed, gincgo.com 10.25.21 -->
 		<script type="text/javascript">
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'izeland.myshopify.com',
-      storefrontAccessToken: '94fbcc11c20fb36ba038450aba285c21',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '7341472776410',
-        node: document.getElementById('product-component-1635142983785'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
+		/*<![CDATA[*/
+			(function () {
+			  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+			  if (window.ShopifyBuy) {
+			    if (window.ShopifyBuy.UI) {
+			      ShopifyBuyInit();
+			    } else {
+			      loadScript();
+    			}
+			    } else {
+			      loadScript();
+  			}
+			      function loadScript() {
+			    var script = document.createElement('script');
+			    script.async = true;
+			    script.src = scriptURL;
+				    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+			    script.onload = ShopifyBuyInit;
+  			}
+			  function ShopifyBuyInit() {
+			    var client = ShopifyBuy.buildClient({
+			      domain: 'izeland.myshopify.com',
+			      storefrontAccessToken: '94fbcc11c20fb36ba038450aba285c21',
+			    });
+			    ShopifyBuy.UI.onReady(client).then(function (ui) {
+			      ui.createComponent('product', {
+				id: '7341472776410',
+				node: document.getElementById('product-component-1635143325474'),
+				moneyFormat: '%24%7B%7Bamount%7D%7D',
+				options: {
+			  "product": {
+			    "styles": {
       "product": {
         "@media (min-width: 601px)": {
           "max-width": "calc(25% - 20px)",
@@ -101,11 +103,21 @@
         "font-size": "14px",
         "padding-top": "15px",
         "padding-bottom": "15px"
+      },
+      "price": {
+        "font-size": "16px"
+      },
+      "compareAt": {
+        "font-size": "13.6px"
+      },
+      "unitPrice": {
+        "font-size": "13.6px"
       }
     },
     "buttonDestination": "checkout",
+    "width": "580px",
     "text": {
-      "button": "Buy now"
+      "button": "Buy Now"
     },
     "googleFonts": [
       "Quantico"
@@ -155,6 +167,24 @@
         "font-size": "14px",
         "padding-top": "15px",
         "padding-bottom": "15px"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
       }
     },
     "googleFonts": [
@@ -192,44 +222,45 @@
       "note": true
     },
     "googleFonts": [
-      "Quantico"
-    ]
-  },
-  "toggle": {
-    "styles": {
-      "toggle": {
-        "font-family": "Quantico, sans-serif",
-        "font-weight": "bold",
-        "background-color": "#c60606",
-        ":hover": {
-          "background-color": "#ff0a0a"
-        },
-        ":focus": {
-          "background-color": "#ff0a0a"
-        }
-      },
-      "count": {
-        "font-size": "14px",
-        "color": "#fcfcfc",
-        ":hover": {
-          "color": "#fcfcfc"
-        }
-      },
-      "iconPath": {
-        "fill": "#fcfcfc"
-      }
-    },
-    "googleFonts": [
-      "Quantico"
-    ]
-  }
-},
-      });
-    });
-  }
-})();
-/*]]>*/
-</script>
+			      "Quantico"
+			    ]
+			  },
+			  "toggle": {
+			    "styles": {
+			      "toggle": {
+				"font-family": "Quantico, sans-serif",
+				"font-weight": "bold",
+				"background-color": "#c60606",
+				":hover": {
+				  "background-color": "#ff0a0a"
+				},
+				":focus": {
+				  "background-color": "#ff0a0a"
+				}
+			      },
+			      "count": {
+				"font-size": "14px",
+				"color": "#fcfcfc",
+				":hover": {
+				  "color": "#fcfcfc"
+				}
+			      },
+			      "iconPath": {
+				"fill": "#fcfcfc"
+			      }
+			    },
+			    "googleFonts": [
+			      "Quantico"
+			    ]
+			  }
+			},
+			      });
+			    });
+			  }
+			})();
+			/*]]>*/
+			</script>
+	<!-- end, gincgo.com 10.25.21 -->
 
 	</head>
 <body>
@@ -238,8 +269,10 @@
 </div>
 
 <div class="videoPage">
-
-	<div id='product-component-1635142983785'></div>
+	
+	<!-- econ merch product body embed, gincgo.com 10.25.21 -->
+	<div id='product-component-1635143325474'></div>
+	<!-- end, gincgo.com 10.25.21 -->
 </div>
 
 </body>
